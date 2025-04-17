@@ -6,7 +6,7 @@
 #    By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/25 14:45:18 by axelpeti          #+#    #+#              #
-#    Updated: 2025/03/24 19:28:41 by axelpeti         ###   ########.fr        #
+#    Updated: 2025/04/15 15:53:35 by axelpeti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@
 NAME = push_swap
 
 # Sources
-SRCS =  ./src/utils/verif.c ./src/utils/utils.c\
+SRCS =  ./src/error/verif.c \
+		./src/utils/utils.c ./src/utils/utils_lst.c\
 		./src/main/pushswap.c \
-		./src/mouv/push.c ./src/mouv/rotate.c ./src/mouv/swap.c \
+		./src/mouv/push.c ./src/mouv/rotate.c ./src/mouv/swap.c ./src/mouv/reverse_rotate.c \
 		
 # Répertoire et archive de la libft
 LIBFT_DIR = ./include/libft

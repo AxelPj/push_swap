@@ -6,32 +6,34 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:31:01 by axel              #+#    #+#             */
-/*   Updated: 2025/03/24 19:29:44 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:15:04 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/header/pushswap.h"
 
-void sa(t_list *stack_A)
+void sa(t_list *stack_a)
 {
 	int	temp;
 
-	temp = stack_A->next->content;
-	stack_A->next->content = stack_A->content;
-	stack_A->content = temp;
+	temp = stack_a->next->content;
+	stack_a->next->content = stack_a->content;
+	stack_a->content = temp;
+	write (1, "sa", 3);
 }
 
-void sb(t_list *stack_B)
+void sb(t_list *stack_b)
 {
 	int	temp;
 
-	temp = stack_B->next->content;
-	stack_B->next->content = stack_B->content;
-	stack_B->content = temp;
+	temp = stack_b->next->content;
+	stack_b->next->content = stack_b->content;
+	stack_b->content = temp;
+	write (1, "sb", 3);
 }
 
-void ss(t_list *stack_B, t_list *stack_A)
+void ss(t_list *stack_b, t_list *stack_a)
 {
-	sa(stack_A);
-	sb(stack_B);
+	sa(stack_a);
+	sb(stack_b);
 }

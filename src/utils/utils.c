@@ -3,64 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 14:41:59 by axel              #+#    #+#             */
-/*   Updated: 2025/03/21 19:32:14 by axel             ###   ########.fr       */
+/*   Created: 2025/04/14 15:29:46 by axelpeti          #+#    #+#             */
+/*   Updated: 2025/04/17 18:56:27 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/header/pushswap.h"
 
-t_list *init_lst(int argc, char **argv, t_list *stack_a)
+
+s_data	*init(char **tab_arg, s_data *data_lst)
 {
-    int i;
-    int nb;
-    t_list *new_node;
+	t_list *stack_a;
+    t_list *stack_b;
     
-    i = 1;
-    stack_a = NULL;
-    while (i < argc)
+	data_lst = malloc(sizeof(s_data));
+	if (!data_lst)
+        return (NULL);
+    stack_b = NULL;
+	stack_a = NULL;
+	stack_a = init_lst(tab_arg, stack_a);
+	data_lst->a = stack_a;
+	data_lst->size_lst = ft_lstsize(stack_a);
+	data_lst->sorted_array = create_array(data_lst);
+	sorted_array(data_lst);
+	return (data_lst);
+}
+/* 
+int check_sort_lst(t_list **stack_a)
+{
+    t_list *current;
+    int temp;
+
+    temp = 0;
+    current = *stack_a;
+    while (current->next)
     {
-        nb = atoi(argv[i]);
-        new_node = ft_lstnw(nb);
-        if (!new_node)
-        {
-            printf("Erreur d'allocation mémoire\n");
-            return (NULL);
-        }
-        ft_lstadd_frt(&stack_a, new_node);
-        i++;
+        if (current->content < current->next->content)
+            return (1);
+        current = current->next;
     }
-    return(stack_a);
-}
+    return (0);
+} */
 
-void	ft_lstadd_frt(t_list **lst, t_list *new)
+int	*create_array(s_data *data_lst)
 {
-	new->next = *lst;
-	*lst = new;
-}
-
-t_list	*ft_lstnw(int content)
-{
-	t_list	*newelem;
-
-	newelem = (t_list *) malloc(sizeof(t_list));
-	if (!newelem)
-		return (NULL);
-	newelem->content = content;
-	newelem->next = NULL;
-	return (newelem);
-}
-int	ft_lstsize(t_list *lst)
-{
-	int	size;
-
-	size = 0;
-	while (lst)
+	t_list	*current;
+	int		i;
+	
+	data_lst->sorted_array = malloc(data_lst->size_lst * sizeof(int));
+	i = 0;
+	current = data_lst->a;
+	while (current)
 	{
-		size++;
-		lst = lst->next;
+		data_lst->sorted_array[i] = current->content;
+		current = current->next;
+		i++;
 	}
-	return (size);
+	return (data_lst->sorted_array);
+}
+
+void	sorted_array(s_data *data_lst)
+{
+	int i;
+	int size = (data_lst->size_lst);
+	int temp;
+	
+	i = 0;
+	temp = 0;
+	while (size > 0)
+	{
+		while (i < size)
+		{
+			if (data_lst->sorted_array[i] < data_lst->sorted_array[i + 1])
+			{
+				temp = data_lst->sorted_array[i];
+				data_lst->sorted_array[i] = data_lst->sorted_array[i + 1];
+				data_lst->sorted_array[i + 1] = temp;
+			}
+			i++;
+		}
+		size--;
+	}
 }

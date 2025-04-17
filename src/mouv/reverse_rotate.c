@@ -1,39 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 14:26:47 by axel              #+#    #+#             */
-/*   Updated: 2025/04/14 15:14:32 by axelpeti         ###   ########.fr       */
+/*   Created: 2025/04/14 14:05:07 by axelpeti          #+#    #+#             */
+/*   Updated: 2025/04/15 15:53:00 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/header/pushswap.h"
 
-void	pa(t_list **stack_a, t_list **stack_b)
+void	rra(t_list **stack_a)
 {
+	t_list *last;
 	t_list *temp;
-
-	if (*stack_b == NULL)
-		return ;
-	temp = *stack_b;
-	*stack_b = (*stack_b)->next;
+	last = *stack_a;
+	while (last->next->next)
+		last = last->next;
+	temp = last->next;
+	last->next = NULL;
 	temp->next = *stack_a;
 	*stack_a = temp;
-	write (1, "pa", 2);
+	write (1, "rra", 3);
 }
-
-void	pb(t_list **stack_a, t_list **stack_b)
+void	rrb(t_list **stack_b)
 {
+	t_list *last;
 	t_list *temp;
-
-	if (*stack_a == NULL)
-		return ;
-	temp = *stack_a;
-	*stack_a = (*stack_a)->next;
+	last = *stack_b;
+	while (last->next->next)
+		last = last->next;
+	temp = last->next;
+	last->next = NULL;
 	temp->next = *stack_b;
 	*stack_b = temp;
-	write (1, "pb", 2);
+	write (1, "rrb", 3);
+}
+
+void	rrr(t_list **stack_b, t_list **stack_a)
+{
+	rra(stack_a);
+	rrb(stack_b);
 }
