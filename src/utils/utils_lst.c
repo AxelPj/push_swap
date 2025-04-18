@@ -6,13 +6,13 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:41:59 by axel              #+#    #+#             */
-/*   Updated: 2025/04/17 18:54:48 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:28:29 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/header/pushswap.h"
 
-t_list *init_lst(char **tab_arg, t_list *stack_a)
+t_list *init_lst(char **tab_arg, s_data *data_lst)
 {
     int i;
     t_list *new_node;
@@ -21,16 +21,15 @@ t_list *init_lst(char **tab_arg, t_list *stack_a)
     while (tab_arg[i])
     {
         new_node = ft_lstnw(atoi(tab_arg[i]));
-		printf ("chaine = %d", new_node->content);
         if (!new_node)
         {
             printf("Error\n");
             return (NULL);
         }
-        ft_lstadd_frt(&stack_a, new_node);
+        ft_lstadd_frt(&data_lst->a, new_node);
         i++;
     }
-    return(stack_a);
+    return(data_lst->a);
 }
 
 void	ft_lstadd_frt(t_list **lst, t_list *new)

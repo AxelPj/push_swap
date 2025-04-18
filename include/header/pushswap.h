@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:25:13 by axel              #+#    #+#             */
-/*   Updated: 2025/04/17 18:48:51 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:28:18 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_list
 {
 	int				content;
+	int				index;
 	struct s_list	*next;
 }	t_list;
 
@@ -30,6 +31,7 @@ typedef struct s_data
 	t_list *b;
 	int size_lst;
 	int *sorted_array;
+	int	chunk;
 
 } s_data;
 
@@ -45,14 +47,14 @@ int		verif_duplicate(char **tab_arg, int i, int j);
 //-----------init_lst-----------//
 
 s_data	*init(char **tab_arg, s_data *data_lst);
-t_list	*init_lst(char **tab_arg, t_list *stack_a);
+t_list	*init_lst(char **tab_arg, s_data *data_lst); 
 void	ft_lstadd_frt(t_list **lst, t_list *new);
 t_list	*ft_lstnw(int content);
 int		ft_lstsize(t_list *lst);
 
-//algo//
+//-----------algo------------//
 
-void	sorted_array(s_data *data_lst);
+int		*sorted_array(s_data *data_lst);
 int		*create_array(s_data *data_lst);
 
 //-----------mouv-----------//

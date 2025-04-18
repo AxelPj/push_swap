@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:45:33 by axel              #+#    #+#             */
-/*   Updated: 2025/04/17 18:56:45 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:36:37 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ int main (int ac, char **av)
         {
             data_lst = init(tab_arg, data_lst);
             printf("size_lst = %d\n\n", data_lst->size_lst);
-            t_list *current;
-            current = data_lst->a;
-            while (current->next)
+            while (data_lst->sorted_array[i])
             {
-                printf ("chaine = %d", data_lst->a->content);
-                current = current->next;
+                printf ("array = %d\n", data_lst->sorted_array[i]);
+                i++;
             }
         }
     }
