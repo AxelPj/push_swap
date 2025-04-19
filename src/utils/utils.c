@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:29:46 by axelpeti          #+#    #+#             */
-/*   Updated: 2025/04/18 17:35:35 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/19 18:48:53 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ s_data	*init(char **tab_arg, s_data *data_lst)
 	data_lst->a = init_lst(tab_arg, data_lst);
 	data_lst->size_lst = ft_lstsize(data_lst->a);
 	data_lst->sorted_array = sorted_array(data_lst);
-	get_chunk_count(data_lst);
 	return (data_lst); 
 }
 
@@ -113,35 +112,135 @@ void	index_to_lst(s_data *data_lst)
 	}
 }
 
-int get_chunk_count(s_data *data_lst)
-{
-	if (data_lst->size_lst <= 100)
-		data_lst->chunk = 5
-	else if (data_lst->size_lst > 100 && data_lst->size_lst <= 200)
-		data_lst->chunk = 10;
-	else if (data_lst->size_lst > 200 && data_lst->size_lst <= 300)
-		data_lst->chunk = 15;
-	else if (data_lst->size_lst > 300 && data_lst->size_lst <= 400)
-		data_lst->chunk = 20;
-	else
-		data_lst->chunk = 25;
-}
-
-void	assign_chunks_to_list(s_data *data_lst)
+int	*find_big_nb(t_list *stack)
 {
 	t_list *current;
-
-	i = 0;
-	while (data_lst->sorted_array[i])
+	int		temp;
+	
+	current = stack;
+	temp = current->content;
+	while (current->next)
 	{
-		current = data_lst->a;
-		while (current)
-		{
-			if (data_lst->sorted_array[i] == current->content)
-			{
-				current->index = i;
-				break;
-			}
-			current = current->next;
-		}
+		if (temp < current->content)
+			temp = current->content;
+		current = current->next;
+	}
+	return(temp);
 }
+
+int	*find_small_nb (t_list *stack)
+{
+	t_list *current;
+	int		temp;
+	
+	current = stack;
+	temp = current->content;
+	while (current->next)
+	{
+		if (temp > current->content)
+			temp = current->content;
+		current = current->next;
+	}
+	return(temp);
+}
+
+int	*find_insert_pos (t_list *stack, int x)
+{
+	t_list *current;
+	int index;
+
+	index = 0;
+	current = stack;
+	while (current->next)
+	{
+		if (current->content < x && x < current->next->content)
+			return (current->next->index);
+		current = current->next;
+	}
+	return (current->next->index);
+}
+
+void update_indexes(t_list *a, t_list *b)
+{
+    int i = 0;
+	t_list *current;
+
+	current = a;
+    while (current)
+    {
+        current->index = i;
+        current = current->next;
+        i++;
+    }
+	current = b;
+	i = 0;
+    while (current)
+    {
+        current->index = i;
+        current = current->next;
+        i++;
+    }
+}
+int cost_mouv_stack(s_data *data_lst, t_list *node_a, t_list *node_b)
+{
+	data_lst->index_a = node_a->index;
+	data_lst->index_b = node_b->index;
+	data_lst->size_a = ft_lstsize(data_lst->a);
+	data_lst->size_b = ft_lstsize(data_lst->b);
+	if (data_lst->index_a <= data_lst->size_a / 2)
+		data_lst->cost_a = (data_lst->size_a - data_lst->index_a);
+	else
+		data_lst->cost_a = -(data_lst->size_a - data_lst->index_a);
+
+	if (data_lst->index_b <= data_lst->size_b / 2)
+		data_lst->cost_b = (data_lst->size_b - data_lst->index_b);
+	else
+		data_lst->cost_b = -(data_lst->size_b - data_lst->index_b);
+	data_lst->total_cost = data_lst->cost_a + data_lst->cost_b;
+}
+
+int cost_mouv(s_data *data_lst, int x)
+{
+	int small;
+	int big;
+	int cost;
+
+	cost = 0;
+	small = find_small_nb(data_lst->b);
+	big = find_big_nb(data_lst->b);
+	if (x < small)
+	{
+		
+	}
+	else if (x > big)
+	{
+		
+	}
+	else
+	{
+		
+	}
+	
+}
+
+void mouv (s_data *data_lst)
+{
+	pb(&data_lst->a, &data_lst->b);
+	pb(&data_lst->a, &data_lst->b);
+	update_indexes(data_lst->a, data_lst->b);
+	while (data_lst->size_a >= 3)
+	{
+		
+	}
+}
+
+// push 2 nb de 'a' dans 'b'
+// si x est plus petit que le plus petit nombre de b alors il ira forcement en bas de b
+// si x est plus grand que le plus grand nombre de b alors il ira en haut
+// si x est entre les deux alors il faudra trouver ou il doit aller
+// chercher le couple qui va le mieux avec ce nombre nb b < x < nb b + 1
+// enregistrer l'index de b->next->content
+// calculer combien de cout pour mettre b->next->content en haut de la pile + 
+// combien de cout pour x dans 'b' et rotate 'b'
+//
+// 
