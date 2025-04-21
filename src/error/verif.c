@@ -6,17 +6,17 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:51:57 by axel              #+#    #+#             */
-/*   Updated: 2025/04/19 16:22:36 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:24:40 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/header/pushswap.h"
 
-char **arg_to_tab(char **av, int ac)
+char	**arg_to_tab(char **av, int ac)
 {
-	char *str;
-	char **tab_arg;
-	int	i;
+	char	*str;
+	char	**tab_arg;
+	int		i;
 
 	i = 1;
 	tab_arg = NULL;
@@ -36,8 +36,8 @@ char **arg_to_tab(char **av, int ac)
 	return (tab_arg);
 }
 
-int verif_all(char **tab)
-{	
+int	verif_all(char **tab)
+{
 	if (verif_nb(tab) == 0)
 	{
 		if (verif_limit(tab) == 0 && verif_duplicate(tab, 0, 0) == 0)
@@ -46,9 +46,9 @@ int verif_all(char **tab)
 	return (write (2, "error\n", 6), 1);
 }
 
-int verif_nb(char **tab_arg)
+int	verif_nb(char **tab_arg)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
@@ -59,7 +59,7 @@ int verif_nb(char **tab_arg)
 		{
 			if (tab_arg[i][0] == '-' && tab_arg[i][1])
 				j++;
-			if ((tab_arg[i][j] && tab_arg[i][j] < '0') 
+			if ((tab_arg[i][j] && tab_arg[i][j] < '0')
 				|| (tab_arg[i][j] && tab_arg[i][j] > '9'))
 				return (1);
 			j++;
@@ -88,7 +88,7 @@ int	verif_limit(char **tab)
 int	verif_duplicate(char **tab_arg, int i, int j)
 {
 	int	*tab_nb;
-	int max;
+	int	max;
 
 	max = tablen((void **) tab_arg);
 	tab_nb = malloc(max * sizeof(int));

@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:44:31 by axelpeti          #+#    #+#             */
-/*   Updated: 2025/04/17 16:45:35 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:37:57 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	tablen(void **tab)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (tab[i])
 		i++;

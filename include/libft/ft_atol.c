@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axel <axel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:16:15 by axel              #+#    #+#             */
-/*   Updated: 2025/03/19 15:17:46 by axel             ###   ########.fr       */
+/*   Updated: 2025/04/21 18:37:36 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long    ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
 	size_t		i;
 	long		result;

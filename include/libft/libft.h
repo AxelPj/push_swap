@@ -59,8 +59,6 @@ void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 
 //------------------------------+++++----------------------//
-
 int			tablen(void **tab);
-long    	ft_atol(const char *str);
-
+long		ft_atol(const char *str);
 #endif

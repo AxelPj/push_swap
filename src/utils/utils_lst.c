@@ -6,30 +6,52 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:41:59 by axel              #+#    #+#             */
-/*   Updated: 2025/04/18 15:28:29 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:39:31 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/header/pushswap.h"
 
-t_list *init_lst(char **tab_arg, s_data *data_lst)
+t_data	*init(char **tab_arg, t_data *data_lst)
 {
-    int i;
-    t_list *new_node;
+	t_list	*stack_b;
 
-    i = 0;
-    while (tab_arg[i])
-    {
-        new_node = ft_lstnw(atoi(tab_arg[i]));
-        if (!new_node)
-        {
-            printf("Error\n");
-            return (NULL);
-        }
-        ft_lstadd_frt(&data_lst->a, new_node);
-        i++;
-    }
-    return(data_lst->a);
+	data_lst = malloc(sizeof(t_data));
+	if (!data_lst)
+		return (NULL);
+	stack_b = NULL;
+	data_lst->a = init_lst(tab_arg, data_lst);
+	data_lst->size_a = ft_lstsize(data_lst->a);
+	data_lst->cost_a = 0;
+	data_lst->cost_b = 0;
+	data_lst->temp_cost_a = 0;
+	data_lst->temp_cost_b = 0;
+	data_lst->size_b = 0;
+	data_lst->index_b = 0;
+	data_lst->index_a = 0;
+	data_lst->total_cost = 10000000;
+	data_lst->temp_cost_total = 0;
+	return (data_lst);
+}
+
+t_list	*init_lst(char **tab_arg, t_data *data_lst)
+{
+	int		i;
+	t_list	*new_node;
+
+	i = 0;
+	while (tab_arg[i])
+	{
+		new_node = ft_lstnw(atoi(tab_arg[i]));
+		if (!new_node)
+		{
+			printf("Error\n");
+			return (NULL);
+		}
+		ft_lstadd_frt(&data_lst->a, new_node);
+		i++;
+	}
+	return (data_lst->a);
 }
 
 void	ft_lstadd_frt(t_list **lst, t_list *new)
@@ -49,6 +71,7 @@ t_list	*ft_lstnw(int content)
 	newelem->next = NULL;
 	return (newelem);
 }
+
 int	ft_lstsize(t_list *lst)
 {
 	int	size;

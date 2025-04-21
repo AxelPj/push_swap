@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:26:47 by axel              #+#    #+#             */
-/*   Updated: 2025/04/14 15:14:32 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:27:55 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pa(t_list **stack_a, t_list **stack_b)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	if (*stack_b == NULL)
 		return ;
@@ -27,7 +27,7 @@ void	pa(t_list **stack_a, t_list **stack_b)
 
 void	pb(t_list **stack_a, t_list **stack_b)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	if (*stack_a == NULL)
 		return ;

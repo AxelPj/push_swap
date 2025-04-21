@@ -6,13 +6,13 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:31:01 by axel              #+#    #+#             */
-/*   Updated: 2025/04/19 15:41:58 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:26:39 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/header/pushswap.h"
 
-void sa(t_list **stack_a)
+void	sa(t_list **stack_a)
 {
 	int	temp;
 
@@ -22,7 +22,7 @@ void sa(t_list **stack_a)
 	write (1, "sa", 3);
 }
 
-void sb(t_list **stack_b)
+void	sb(t_list **stack_b)
 {
 	int	temp;
 
@@ -32,8 +32,8 @@ void sb(t_list **stack_b)
 	write (1, "sb", 3);
 }
 
-void ss(t_list *stack_b, t_list *stack_a)
+void	ss(t_list *stack_b, t_list *stack_a)
 {
-	sa(stack_a);
-	sb(stack_b);
+	sa(&stack_a);
+	sb(&stack_b);
 }

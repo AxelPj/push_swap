@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 19:18:48 by axelpeti          #+#    #+#             */
-/*   Updated: 2025/04/15 15:51:56 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/21 18:27:24 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ra(t_list **stack_a)
 {
-	t_list *temp;
-	t_list *last;
+	t_list	*temp;
+	t_list	*last;
 
 	if (!(*stack_a) || !(*stack_a)->next)
-        return ;
+		return ;
 	temp = *stack_a;
 	*stack_a = (*stack_a)->next;
 	last = *stack_a;
@@ -31,11 +31,11 @@ void	ra(t_list **stack_a)
 
 void	rb(t_list **stack_b)
 {
-	t_list *temp;
-	t_list *last;
+	t_list	*temp;
+	t_list	*last;
 
 	if (!(*stack_b) || !(*stack_b)->next)
-        return ;
+		return ;
 	temp = *stack_b;
 	*stack_b = (*stack_b)->next;
 	last = *stack_b;
