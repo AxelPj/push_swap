@@ -6,7 +6,7 @@
 #    By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/25 14:45:18 by axelpeti          #+#    #+#              #
-#    Updated: 2025/04/15 15:53:35 by axelpeti         ###   ########.fr        #
+#    Updated: 2025/04/22 18:31:06 by axelpeti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = push_swap
 
 # Sources
 SRCS =  ./src/error/verif.c \
-		./src/utils/utils.c ./src/utils/utils_lst.c\
+		./src/utils/utils.c ./src/utils/utils_lst.c ./src/utils/algo.c ./src/utils/mouv.c\
 		./src/main/pushswap.c \
 		./src/mouv/push.c ./src/mouv/rotate.c ./src/mouv/swap.c ./src/mouv/reverse_rotate.c \
 		
@@ -31,7 +31,7 @@ OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 # Compilateur et options
 CC = cc
-CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall -g
 
 # Couleurs pour affichage
 YELLOW = \033[0;33m

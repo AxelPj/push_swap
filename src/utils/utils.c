@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:29:46 by axelpeti          #+#    #+#             */
-/*   Updated: 2025/04/21 18:41:13 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:45:03 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ void	update_indexes(t_list *a, t_list *b)
 
 void	reinit_data(t_data *data_lst)
 {
-	find_small_and_big_nb(data_lst);
 	data_lst->size_a = ft_lstsize(data_lst->a);
 	data_lst->size_b = ft_lstsize(data_lst->b);
 	update_indexes(data_lst->a, data_lst->b);
+	find_small_and_big_nb(data_lst);
+	data_lst->total_cost = 0;
 }
 
 void	print_lst(t_list *stack)

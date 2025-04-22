@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:45:33 by axel              #+#    #+#             */
-/*   Updated: 2025/04/21 18:25:49 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:28:50 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@ int	main(int ac, char **av)
 			data_lst = init(tab_arg, data_lst);
 			print_lst(data_lst->a);
 			mouv_all(data_lst);
-			printf("\nstack a =\n");
-			print_lst(data_lst->a);
-			printf("\nstack b =\n");
-			print_lst(data_lst->b);
 		}
 	}
 	else

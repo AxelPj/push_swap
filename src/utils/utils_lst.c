@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:41:59 by axel              #+#    #+#             */
-/*   Updated: 2025/04/21 18:39:31 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:02:22 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_data	*init(char **tab_arg, t_data *data_lst)
 	data_lst->size_b = 0;
 	data_lst->index_b = 0;
 	data_lst->index_a = 0;
-	data_lst->total_cost = 10000000;
+	data_lst->total_cost = 0;
 	data_lst->temp_cost_total = 0;
 	return (data_lst);
 }
