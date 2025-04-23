@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:29:46 by axelpeti          #+#    #+#             */
-/*   Updated: 2025/04/22 18:45:03 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:31:37 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,45 @@ void	reinit_data(t_data *data_lst)
 	data_lst->size_b = ft_lstsize(data_lst->b);
 	update_indexes(data_lst->a, data_lst->b);
 	find_small_and_big_nb(data_lst);
-	data_lst->total_cost = 0;
+	data_lst->total_cost = 1000;
 }
 
-void	print_lst(t_list *stack)
+void	print_lst(t_data *data_lst)
 {
-	t_list	*current;
-
-	current = stack;
-	while (current)
+	t_list	*current_b;
+	t_list *current_a;
+	
+	current_a = data_lst->a;
+	current_b = data_lst->b;
+	printf("\n");
+	if (ft_lstsize(data_lst->a) >= ft_lstsize(data_lst->b))
 	{
-		printf ("%d\n", current->content);
-		current = current->next;
+		while (current_a)
+		{
+			printf ("%d", current_a->content);
+			printf(" | ");
+			if (current_b)
+			{
+				printf ("%d", current_b->content);
+				current_b = current_b->next;
+			}
+			printf("\n");
+			current_a = current_a->next;
+		}
+	}
+	else if (ft_lstsize(data_lst->a) < ft_lstsize(data_lst->b))
+	{
+		while (current_b)
+		{
+			if (current_a)
+			{
+				printf ("%d", current_a->content);
+				current_a = current_a->next;
+			}
+			printf(" | ");
+			printf ("%d", current_b->content);
+			printf("\n");
+			current_b = current_b->next;
+		}
 	}
 }

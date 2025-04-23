@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:25:13 by axel              #+#    #+#             */
-/*   Updated: 2025/04/22 15:38:51 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:06:09 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,16 @@ void	cost_mouv_stack(t_data *data_lst, int index_a, int index_b);
 int		find_insert_pos(t_list *stack, int x);
 void	find_small_and_big_nb(t_data *data_lst);
 
+void	sort_b(t_data *data_lst);
+void push_to_stack_a(t_data *data_lst);
+int	verif_place_a(t_data *data_lst, int x);
+
 //-----------utils-----------//
 void	update_indexes(t_list *a, t_list *b);
 void	reinit_data(t_data *data_lst);
-void	print_lst(t_list *stack);
+void	print_lst(t_data *data_lst);
 int		check_sort_lst(t_list **stack_a);
-
+int		verif_sort(t_list *stack);
 //-----------mouv-----------//
 void	sa(t_list **stack_a);
 void	sb(t_list **stack_a);
