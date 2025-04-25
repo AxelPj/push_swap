@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 15:29:46 by axelpeti          #+#    #+#             */
-/*   Updated: 2025/04/23 17:31:37 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:58:22 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ int	check_sort_lst(t_list **stack_a)
 	return (0);
 }
 
-void	update_indexes(t_list *a, t_list *b)
+void	update_indexes(t_list *stack_push, t_list *stack_receive)
 {
 	int		i;
 	t_list	*current;
 
 	i = 0;
-	current = a;
+	current = stack_push;
 	while (current)
 	{
 		current->index = i;
 		current = current->next;
 		i++;
 	}
-	current = b;
+	current = stack_receive;
 	i = 0;
 	while (current)
 	{
@@ -51,12 +51,12 @@ void	update_indexes(t_list *a, t_list *b)
 	}
 }
 
-void	reinit_data(t_data *data_lst)
+
+void	reinit_data(t_data *data_lst, t_list *stack_receive)
 {
 	data_lst->size_a = ft_lstsize(data_lst->a);
 	data_lst->size_b = ft_lstsize(data_lst->b);
-	update_indexes(data_lst->a, data_lst->b);
-	find_small_and_big_nb(data_lst);
+	find_small_and_big_nb(data_lst, stack_receive);
 	data_lst->total_cost = 1000;
 }
 

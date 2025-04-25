@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:41:59 by axel              #+#    #+#             */
-/*   Updated: 2025/04/22 18:02:22 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:35:55 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ t_data	*init(char **tab_arg, t_data *data_lst)
 		return (NULL);
 	stack_b = NULL;
 	data_lst->a = init_lst(tab_arg, data_lst);
+	printf ("\n\ninit list ok\n\n");
 	data_lst->size_a = ft_lstsize(data_lst->a);
+	printf ("\n\n\nlstsize ok\n\n\n");
 	data_lst->cost_a = 0;
 	data_lst->cost_b = 0;
 	data_lst->temp_cost_a = 0;
@@ -31,6 +33,7 @@ t_data	*init(char **tab_arg, t_data *data_lst)
 	data_lst->index_a = 0;
 	data_lst->total_cost = 0;
 	data_lst->temp_cost_total = 0;
+	printf ("\n\n\nlstsize ok\n\n\n");
 	return (data_lst);
 }
 
@@ -75,12 +78,14 @@ t_list	*ft_lstnw(int content)
 int	ft_lstsize(t_list *lst)
 {
 	int	size;
+	t_list *current;
 
+	current = lst;
 	size = 0;
-	while (lst)
+	while (current)
 	{
 		size++;
-		lst = lst->next;
+		current = current->next;
 	}
 	return (size);
 }

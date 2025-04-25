@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:25:13 by axel              #+#    #+#             */
-/*   Updated: 2025/04/23 19:06:09 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/25 17:59:03 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ typedef struct t_data
 	int		size_b;
 	int		temp_cost_total;
 	int		total_cost;
-	int		small_b;
-	int		biggest_b;
-	int		index_big_b;
-	int		index_small_b;
+	int		small_nb;
+	int		biggest_nb;
+	int		index_big_nb;
+	int		index_small_nb;
 	int		index_b;
 	int		index_a;
 }	t_data;
@@ -57,26 +57,30 @@ t_list	*init_lst(char **tab_arg, t_data *data_lst);
 void	ft_lstadd_frt(t_list **lst, t_list *new);
 t_list	*ft_lstnw(int content);
 int		ft_lstsize(t_list *lst);
-void	mouv_all(t_data *data_lst);
+void	mouv_a_to_b(t_data *data_lst);
 void	mouv_a(t_data *data_lst);
 void	mouv_b(t_data *data_lst);
 
-//-----------algo------------//
-void	check_place(t_data *data_lst);
+//-----------a_to_b------------//
+void	check_place_a_to_b(t_data *data_lst);
 void	cost_mouv_stack(t_data *data_lst, int index_a, int index_b);
-int		find_insert_pos(t_list *stack, int x);
-void	find_small_and_big_nb(t_data *data_lst);
+int		find_insert_pos_a_to_b(t_list *stack, int x);
+int		find_insert_pos_b_to_a(t_list *stack, int x);
+void	find_small_and_big_nb(t_data *data_lst, t_list *stack);
 
-void	sort_b(t_data *data_lst);
-void push_to_stack_a(t_data *data_lst);
-int	verif_place_a(t_data *data_lst, int x);
+//-----------b_to_a------------//
+int		find_insert_pos_b_to_a(t_list *stack, int x);
+void	mouv_b_to_a(t_data *data_lst);
+void	check_place_b_to_a(t_data *data_lst);
 
 //-----------utils-----------//
-void	update_indexes(t_list *a, t_list *b);
-void	reinit_data(t_data *data_lst);
+void	update_indexes(t_list *stack_push, t_list *stack_receive);
+void	reinit_data(t_data *data_lst, t_list *stack_receive);
 void	print_lst(t_data *data_lst);
 int		check_sort_lst(t_list **stack_a);
 int		verif_sort(t_list *stack);
+void	sort_three(t_data *data_lst);
+
 //-----------mouv-----------//
 void	sa(t_list **stack_a);
 void	sb(t_list **stack_a);
