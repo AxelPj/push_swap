@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:51:57 by axel              #+#    #+#             */
-/*   Updated: 2025/04/21 18:24:40 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/26 17:20:03 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,5 @@ int	verif_duplicate(char **tab_arg, int i, int j)
 		}
 		j++;
 	}
-	if (j == 1)
-		return (1);
 	return (0);
 }

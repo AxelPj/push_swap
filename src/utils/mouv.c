@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 18:32:52 by axelpeti          #+#    #+#             */
-/*   Updated: 2025/04/25 18:32:04 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/26 21:33:36 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	mouv_a(t_data *data_lst)
 {
 	if (data_lst->cost_a < 0)
 	{
-		while (data_lst->cost_a < 0)
+		while (data_lst->cost_a <= 0)
 		{
-			rra(&data_lst->a);
+			rra(&data_lst->a, 0);
 			data_lst->cost_a++;
 		}
 	}
 	else
-		while (data_lst->cost_a > 0)
+		while (data_lst->cost_a >= 0)
 		{
-			ra(&data_lst->a);
+			ra(&data_lst->a, 0);
 			data_lst->cost_a--;
 		}
 }
@@ -33,15 +33,15 @@ void	mouv_a(t_data *data_lst)
 void	mouv_b(t_data *data_lst)
 {
 	if (data_lst->cost_b < 0)
-		while (data_lst->cost_b < 0)
+		while (data_lst->cost_b <= 0)
 		{
-			rrb(&data_lst->b);
+			rrb(&data_lst->b, 0);
 			data_lst->cost_b++;
 		}
 	else
-		while (data_lst->cost_b > 0)
+		while (data_lst->cost_b >= 0)
 		{
-			rb(&data_lst->b);
+			rb(&data_lst->b, 0);
 			data_lst->cost_b--;
 		}
 }
@@ -71,22 +71,22 @@ void	sort_three(t_data *data_lst)
 	if (first < second && second < third)
 		return ;
 	else if (first > second && second < third && first < third)
-		sa(&data_lst->a);
+		sa(&data_lst->a, 0);
 	else if (first > second && second > third)
 	{
-		sa(&data_lst->a);
-		rra(&data_lst->a);
+		sa(&data_lst->a, 0);
+		rra(&data_lst->a, 0);
 	}
 	else if (first > second && second < third && first > third)
-		ra(&data_lst->a);
+		ra(&data_lst->a, 0);
 
 	else if (first < second && second > third && first < third)
 	{
-		sa(&data_lst->a);
-		ra(&data_lst->a);
+		sa(&data_lst->a, 0);
+		ra(&data_lst->a, 0);
 	}
 	else if (first < second && second > third && first > third)
-		rra(&data_lst->a);
+		rra(&data_lst->a, 0);
 }
 
 int	verif_sort(t_list *stack)
@@ -107,33 +107,36 @@ void	mouv_a_to_b(t_data *data_lst)
 {
 	pb(&data_lst->a, &data_lst->b);
 	pb(&data_lst->a, &data_lst->b);
-	while (data_lst->size_a > 4)
+	reinit_data(data_lst, data_lst->b);
+	find_small_and_big_nb(data_lst, data_lst->b);
+	if (data_lst->size_a > 3)
 	{
-		update_indexes(data_lst->a, data_lst->b);
-		reinit_data(data_lst, data_lst->b);
-		printf("\n");
-		check_place_a_to_b (data_lst);
-		if ((data_lst->cost_a > 0 && data_lst->cost_b > 0) 
-			|| (data_lst->cost_a < 0 && data_lst->cost_b < 0))
-			mouv_combined(data_lst);
-		else
+		while (data_lst->size_a > 4)
 		{
-			mouv_a(data_lst);
-			mouv_b(data_lst);
-		}
-		pb(&data_lst->a, &data_lst->b);
+			reinit_data(data_lst, data_lst->b);
+			update_indexes(data_lst->a, data_lst->b);
+			find_small_and_big_nb(data_lst, data_lst->b);
+			check_place_a_to_b (data_lst);
+			if ((data_lst->cost_a > 0 && data_lst->cost_b > 0) 
+				|| (data_lst->cost_a < 0 && data_lst->cost_b < 0))
+				mouv_combined(data_lst);
+			else
+			{
+				mouv_a(data_lst);
+				mouv_b(data_lst);
+			}
+			pb(&data_lst->a, &data_lst->b);
+		}	
 	}
-	print_lst(data_lst);
 }
 
 void	mouv_b_to_a(t_data *data_lst)
 {
-	while (data_lst->size_b != 0)
+	while (data_lst->size_b > 0)
 	{
-		update_indexes(data_lst->a, data_lst->b);
-		printf("\n");
 		reinit_data(data_lst, data_lst->a);
-		print_lst(data_lst);
+		update_indexes(data_lst->a, data_lst->b);
+		find_small_and_big_nb(data_lst, data_lst->a);
 		check_place_b_to_a(data_lst);
 		if ((data_lst->cost_a > 0 && data_lst->cost_b > 0) 
 			|| (data_lst->cost_a < 0 && data_lst->cost_b < 0))
@@ -143,7 +146,8 @@ void	mouv_b_to_a(t_data *data_lst)
 			mouv_a(data_lst);
 			mouv_b(data_lst);
 		}
-		pa(&data_lst->a, &data_lst->b);	}
+		pa(&data_lst->a, &data_lst->b);
+	}
 }
 
 void	check_place_b_to_a(t_data *data_lst)
@@ -172,5 +176,19 @@ void	check_place_b_to_a(t_data *data_lst)
 			cost_mouv_stack(data_lst, index_temp, current->index);
 		}
 		current = current->next;
+	}
+}
+void	sort_a(t_data *data_lst)
+{
+	reinit_data(data_lst, data_lst->a);
+	if (data_lst->index_small_nb <= data_lst->size_a / 2)
+	{
+		data_lst->cost_a = data_lst->index_small_nb;
+		mouv_a(data_lst);
+	}
+	else
+	{
+		data_lst->cost_a = -(data_lst->size_a - data_lst->index_small_nb);
+		mouv_a(data_lst);
 	}
 }

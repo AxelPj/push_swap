@@ -6,13 +6,13 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:05:07 by axelpeti          #+#    #+#             */
-/*   Updated: 2025/04/22 18:09:46 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/26 17:47:47 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/header/pushswap.h"
 
-void	rra(t_list **stack_a)
+void	rra(t_list **stack_a, int bool)
 {
 	t_list	*last;
 	t_list	*temp;
@@ -24,10 +24,11 @@ void	rra(t_list **stack_a)
 	last->next = NULL;
 	temp->next = *stack_a;
 	*stack_a = temp;
-	write (1, "rra", 3);
+	if (bool == 0)
+		write (1, "rra\n", 4);
 }
 
-void	rrb(t_list **stack_b)
+void	rrb(t_list **stack_b, int bool)
 {
 	t_list	*last;
 	t_list	*temp;
@@ -39,11 +40,13 @@ void	rrb(t_list **stack_b)
 	last->next = NULL;
 	temp->next = *stack_b;
 	*stack_b = temp;
-	write (1, "rrb", 3);
+	if (bool == 0)
+		write (1, "rrb\n", 4);
 }
 
 void	rrr(t_list **stack_b, t_list **stack_a)
 {
-	rra(stack_a);
-	rrb(stack_b);
+	rra(stack_a, 1);
+	rrb(stack_b, 1);
+	write (1, "rrr\n", 4);
 }

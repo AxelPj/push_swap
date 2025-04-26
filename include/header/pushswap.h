@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:25:13 by axel              #+#    #+#             */
-/*   Updated: 2025/04/25 17:59:03 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/26 19:36:24 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ int		verif_duplicate(char **tab_arg, int i, int j);
 //-----------lst-----------//
 t_data	*init(char **tab_arg, t_data *data_lst);
 t_list	*init_lst(char **tab_arg, t_data *data_lst);
-void	ft_lstadd_frt(t_list **lst, t_list *new);
 t_list	*ft_lstnw(int content);
 int		ft_lstsize(t_list *lst);
 void	mouv_a_to_b(t_data *data_lst);
 void	mouv_a(t_data *data_lst);
 void	mouv_b(t_data *data_lst);
+t_list	*lstlast(t_list *lst);
+void	ft_lstadd_bck(t_list **lst, t_list *new);
 
 //-----------a_to_b------------//
 void	check_place_a_to_b(t_data *data_lst);
@@ -80,18 +81,19 @@ void	print_lst(t_data *data_lst);
 int		check_sort_lst(t_list **stack_a);
 int		verif_sort(t_list *stack);
 void	sort_three(t_data *data_lst);
+void	sort_a(t_data *data_lst);
 
 //-----------mouv-----------//
-void	sa(t_list **stack_a);
-void	sb(t_list **stack_a);
+void	sb(t_list **stack_b, int bool);
+void	sa(t_list **stack_a, int bool);
 void	ss(t_list *stack_b, t_list *stack_a);
-void	ra(t_list **stack_a);
-void	rb(t_list **stack_a);
+void	ra(t_list **stack_a,int bool);
+void	rb(t_list **stack_a,int bool);
 void	rr(t_list **stack_a, t_list **stack_b);
 void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_a, t_list **stack_b);
-void	rrb(t_list **stack_b);
-void	rra(t_list **stack_a);
+void	rrb(t_list **stack_b, int bool);
+void	rra(t_list **stack_a, int bool);
 void	rrr(t_list **stack_b, t_list **stack_a);
 
 #endif

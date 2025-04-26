@@ -6,7 +6,7 @@
 /*   By: axelpeti <axelpeti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:41:59 by axel              #+#    #+#             */
-/*   Updated: 2025/04/25 18:35:55 by axelpeti         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:49:28 by axelpeti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 t_data	*init(char **tab_arg, t_data *data_lst)
 {
-	t_list	*stack_b;
-
 	data_lst = malloc(sizeof(t_data));
 	if (!data_lst)
 		return (NULL);
-	stack_b = NULL;
+	data_lst->a = NULL;
+	data_lst->b = NULL;
+	if (data_lst->a)
+	data_lst->size_a = 0;
 	data_lst->a = init_lst(tab_arg, data_lst);
-	printf ("\n\ninit list ok\n\n");
 	data_lst->size_a = ft_lstsize(data_lst->a);
-	printf ("\n\n\nlstsize ok\n\n\n");
 	data_lst->cost_a = 0;
 	data_lst->cost_b = 0;
 	data_lst->temp_cost_a = 0;
@@ -33,7 +32,6 @@ t_data	*init(char **tab_arg, t_data *data_lst)
 	data_lst->index_a = 0;
 	data_lst->total_cost = 0;
 	data_lst->temp_cost_total = 0;
-	printf ("\n\n\nlstsize ok\n\n\n");
 	return (data_lst);
 }
 
@@ -51,16 +49,35 @@ t_list	*init_lst(char **tab_arg, t_data *data_lst)
 			printf("Error\n");
 			return (NULL);
 		}
-		ft_lstadd_frt(&data_lst->a, new_node);
+		ft_lstadd_bck(&data_lst->a, new_node);
 		i++;
 	}
 	return (data_lst->a);
 }
 
-void	ft_lstadd_frt(t_list **lst, t_list *new)
+void	ft_lstadd_bck(t_list **lst, t_list *new)
 {
-	new->next = *lst;
-	*lst = new;
+	t_list	*last;
+
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	else
+	{
+		last = lstlast(*lst);
+		last->next = new;
+	}
+}
+
+t_list	*lstlast(t_list *lst)
+{
+	while (lst && lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
 
 t_list	*ft_lstnw(int content)
